@@ -1,0 +1,227 @@
+@use './styles.scss' as *;
+
+.qt-container{    
+    height: inherit;
+    .qt-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 50px;
+        width: 100%;
+        height: 100%;
+        .qt-head{
+            flex-direction: column;
+            height: 100%;
+        }
+        .qt-track{
+            display: grid;
+            place-items: center;
+            padding: 10%;
+            h2{
+                white-space: nowrap;
+            }
+            .stepper-wrapper {
+                margin-top:20px;
+                font-weight: 700;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: fit-content;
+              }
+              .stepper-item {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 30px;
+                align-items: center;
+                flex: 1;
+                &::after{
+                    position: absolute;
+                    content: "";
+                    border-left: 3px solid white;
+                    width: 1px;
+                    height: 65px;
+                    bottom: -55px;
+                    left: 50%;
+                    z-index: 2;
+                }
+                &:last-child{
+                    margin-bottom:0;
+                }
+              }
+              
+              .stepper-item .step-counter {
+                position: relative;
+                z-index: 5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #fff;
+                margin-bottom: 6px;
+                border: 3px solid white;
+                box-shadow: 0px 4px 0px #2221213b;
+              }
+              
+              .stepper-item.active {
+                font-weight: bold;
+              }
+              
+              .stepper-item.completed .step-counter {
+                background-color: #b9e11d;
+                border: 3px solid $dk-color;
+              }
+              
+              .stepper-item.completed::after {
+                position: absolute;
+                content: "";
+                border-left: 3px solid $dk-color;
+                width: 1px;
+                height: 65px;
+                bottom: -55px;
+                left: 50%;
+                z-index: 3;
+              }
+              
+              .stepper-item:first-child::before {
+                content: none;
+              }
+              .stepper-item:last-child::after {
+                content: none;
+              }
+        }
+
+        .qt-block{
+            padding: 3%;
+            background: #222121;
+            color: white;
+            width: 100%;
+            margin: 3%;
+            border-radius: 10px;
+            
+            h4{
+                font-weight: 400;
+                opacity: 0.5;
+                align-self: center;
+            }
+            h3{
+                display: flex;
+                font-size: 18px;
+                font-weight: 600;
+                padding: 5px 10px;
+                background-color:$sc-color;
+                border-radius: 5px;
+                color: white;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .qt-title{
+                .qt{
+                    font-size: 30px;
+                    font-weight: 500;
+                    margin: 20px 0;
+                    word-spacing: 2px;
+                }
+                .qt-options{
+                    margin: 30px 0;
+                    width: 80%;
+                    ul >li >label{
+                        font-weight: 500;
+                        cursor: pointer;
+                        font-size: 18px;
+                        margin: 20px 0;
+                        padding: 7px;
+                        background-color: white;
+                        color: $dk-color;
+                        border-radius: 30px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        transition: background-color 0.1s ease-in-out;
+                        .qt-op{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 20px;
+                            span{
+                                border: 2px solid;
+                                border-radius: 100%;
+                                aspect-ratio: 1;
+                                width: 2rem;
+                                height: 2rem;
+                                display: grid;
+                                place-content: center;
+                                background-color: rgb(34 33 33 / 20%);
+                            }
+                        }
+
+                    }
+
+                    ul li input[type=radio]:checked + label{
+                        background-color: $pm-color;
+                    }
+
+                    ul li input[type=radio]:disabled + label{
+                        opacity: 0.7;
+                    }
+
+                    
+
+                }
+            }
+
+            .progress {
+                margin-top: 20px;
+                width: 80%;
+                height: 10px;
+                position: relative;
+                background-color: rgb(255 255 255 / 14%);
+                border-radius: 20px;
+            }
+            
+            .progress .progress-bar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 10px;
+                background-color: $pm-color;
+                border-radius: 20px;
+            }
+
+            .qt-action a{
+                padding: 10px 20px;
+                text-decoration: none;
+            }
+
+        }
+
+        @media screen and (max-width:770px) {
+            width:100%;            
+        }
+    }
+}
+
+.wrong{
+    background-color: #e92626 !important;
+    color: white !important;
+}
+.next-btn{
+    margin-top: 20px;
+    padding: 5px 20px;
+    color: $dk-color;
+    background-color: $pm-color;
+    border-radius: 5px;
+    font-weight: 700;
+    float: right;
+}
+
+@media screen and (max-width:770px) {
+    .qt-container .qt-wrapper .qt-track{
+        display: none;
+    }
+}
